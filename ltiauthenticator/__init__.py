@@ -144,6 +144,14 @@ class LTIAuthenticator(Authenticator):
 
         launch_url = protocol + "://" + handler.request.host + handler.request.uri
 
+        self.log.debug(
+            f"Received args in request: {args}"
+        )
+
+        self.log.debug(
+            f"Consumer config: {self.consumers}"
+        )
+
         if validator.validate_launch_request(
                 launch_url,
                 handler.request.headers,

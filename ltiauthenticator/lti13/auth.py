@@ -87,6 +87,7 @@ class LTI13Authenticator(OAuthenticator):
         handler.append(
             (r"/lti13/config", LTI13ConfigHandler),
         )
+        return handler
         # return [
         #     (r"/oauth_login", self.login_handler),
         #     (r"/oauth_callback", self.callback_handler),

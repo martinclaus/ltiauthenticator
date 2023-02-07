@@ -13,6 +13,7 @@ from .handlers import LTI13CallbackHandler
 from .handlers import LTI13ConfigHandler
 from .handlers import LTI13LaunchValidator
 from .handlers import LTI13LoginHandler
+from .handlers import LTI13JWKSHandler
 
 
 logger = logging.getLogger(__name__)
@@ -83,7 +84,10 @@ class LTI13Authenticator(OAuthenticator):
 
     def get_handlers(self, app: JupyterHub) -> BaseHandler:
         return [
-            ("/lti13/config", LTI13ConfigHandler),
+            (r"/oauth_login", self.login_handler),
+            (r"/oauth_callback", self.callback_handler),
+            (r"/lti13/jwks", LTI13JWKSHandler),
+            (r"/lti13/config", LTI13ConfigHandler),
         ]
 
     async def authenticate(  # noqa: C901

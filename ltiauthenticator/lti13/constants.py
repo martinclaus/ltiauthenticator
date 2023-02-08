@@ -118,7 +118,8 @@ LTI13_LIS_CLAIMS = {
 # For this setup to work properly, some optional claims are required.
 LTI13_RESOURCE_LINK_REQUIRED_CLAIMS = {
     **LTI13_RESOURCE_LINK_REQUIRED_CLAIMS,
-    **LTI13_RESOURCE_LINK_OPTIONAL_CLAIMS,
+    "sub": "",
+    # **LTI13_RESOURCE_LINK_OPTIONAL_CLAIMS,
 }
 
 # Required and optional resource link claims

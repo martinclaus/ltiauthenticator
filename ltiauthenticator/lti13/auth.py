@@ -116,7 +116,9 @@ class LTI13Authenticator(OAuthenticator):
 
     def get_handlers(self, app: JupyterHub) -> List[BaseHandler]:
         return [
-            ("/lti13/config", LTI13ConfigHandler),
+            (r"/lti13/oauth_login", self.login_handler),
+            (r"/lti13/oauth_callback", self.callback_handler),
+            (r"/lti13/config", LTI13ConfigHandler),
         ]
 
     async def authenticate(

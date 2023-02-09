@@ -114,6 +114,9 @@ class LTI13Authenticator(OAuthenticator):
         """,
     )
 
+    def login_url(self, base_url):
+        return url_path_join(base_url, "hub", "lti13", "oauth_login")
+
     def get_handlers(self, app: JupyterHub) -> List[BaseHandler]:
         return [
             (r"/lti13/oauth_login", self.login_handler),

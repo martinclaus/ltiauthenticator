@@ -9,6 +9,7 @@ from urllib.parse import quote, unquote, urlparse
 import pem
 from Crypto.PublicKey import RSA
 from jupyterhub.handlers import BaseHandler
+from jupyterhub.utils import url_path_join
 from oauthenticator.oauth2 import (
     OAuthCallbackHandler,
     OAuthLoginHandler,
@@ -224,7 +225,7 @@ class LTI13LoginHandler(OAuthLoginHandler):
         client_id = args["client_id"]
         self.log.debug(f"client_id is {client_id}")
         redirect_uri = guess_callback_uri(
-            "https", self.request.host, self.hub.server.base_url
+            "https", self.request.host, url_path_join(self.hub.server.base_url, "lti13")
         )
         self.log.info(f"redirect_uri: {redirect_uri}")
         state = self.get_state()
